@@ -1,5 +1,5 @@
 {
-    "name": "php-ai/php-ml",
+    "name": "webexpert001/php-ai",
     "type": "library",
     "description": "PHP-ML - Machine Learning library for PHP",
     "keywords": [
@@ -11,7 +11,7 @@
         "data science",
         "feature extraction"
     ],
-    "homepage": "https://github.com/php-ai/php-ml",
+    "homepage": "https://github.com/webexpert001/php-ai",
     "license": "MIT",
     "authors": [
         {
