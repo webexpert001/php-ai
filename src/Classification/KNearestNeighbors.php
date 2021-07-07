@@ -78,7 +78,7 @@ class KNearestNeighbors implements Classifier
         $distances = [];
         $long = 1.0;
         $near = 0.0;
-        $neighbors = [];
+        $targets = [];
 
         foreach ($this->samples as $index => $neighbor) {
             $distance = $this->distanceMetric->distance($sample, $neighbor);
@@ -86,7 +86,7 @@ class KNearestNeighbors implements Classifier
             if ($distance < $near) $near = $distance;
 
             $distances[$index] = $distance;
-            $neighbors[$index] = $neighbor;
+            $targets[$index] = $this->targets[$index];
         }
 
         asort($distances);
@@ -96,12 +96,12 @@ class KNearestNeighbors implements Classifier
         $results = [];
         $names = [];
         foreach ($distances as $key => $value) {
-            if (!in_array($neighbors[$key], $names)) {
+            if (!in_array($targets[$key], $names)) {
                 $results[] = [
-                    'value'         => $neighbors[$key],
+                    'value'         => $targets[$key],
                     'probability'   => intval((($long - $value) / $long) * 100)
                 ];
-                $names[] = $neighbors[$key];
+                $names[] = $targets[$key];
             }
         }
 
