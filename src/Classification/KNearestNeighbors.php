@@ -95,7 +95,7 @@ class KNearestNeighbors implements Classifier
 
         $results = [];
         $names = [];
-        $long *= 2;
+        $long *= 1.3;
         foreach ($distances as $key => $value) {
             if (!in_array($targets[$key], $names)) {
                 $results[] = [
