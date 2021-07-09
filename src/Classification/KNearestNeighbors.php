@@ -107,4 +107,32 @@ class KNearestNeighbors implements Classifier
 
         return array_slice($results, 0, $limit, true);
     }
+
+    public function getDistances(array $sample)
+    {
+        $distances = [];
+        $targets = [];
+
+        foreach ($this->samples as $index => $neighbor) {
+            $distance = $this->distanceMetric->distance($sample, $neighbor);
+
+            $distances[$index] = $distance;
+            $targets[$index] = $this->targets[$index];
+        }
+
+        asort($distances);
+
+        if (sizeof($distances) === 0) return [];
+
+        $results = [];
+        $names = [];
+        foreach ($distances as $key => $value) {
+            $results[] = [
+                'value'         => $targets[$key],
+                'distance'      => $value
+            ];
+        }
+
+        return $results;
+    }
 }
